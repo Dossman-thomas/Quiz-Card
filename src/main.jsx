@@ -12,19 +12,18 @@ import './index.css'
 // import pages
 import App from './App.jsx'
 import Error from './pages/Error.jsx'; 
-import WelcomePage from './pages/Welcome.jsx';
+import LandingPage from './pages/Landing.jsx';
 import ManageCardsPage from './pages/ManageCards.jsx';
+import StudyPage from './pages/Study.jsx';
 
 const router = createBrowserRouter([
+  { path: '/', element: <LandingPage /> },
   {
-    path: '/',
     element: <App />,
     errorElement: <Error />,
     children: [
-      { index: true, 
-        element: <WelcomePage /> },
       { path: '/manage-cards', element: <ManageCardsPage /> },
-      // { path: 'study', element: <StudyPage /> },
+      { path: '/study', element: <StudyPage /> },
     ],
   },
 ]);
