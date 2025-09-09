@@ -11,13 +11,15 @@ import './index.css'
 
 // import pages
 import App from './App.jsx'
-import WelcomePage from './pages/welcome.jsx';
+import Error from './pages/Error.jsx'; 
+import WelcomePage from './pages/Welcome.jsx';
 import ManageCardsPage from './pages/ManageCards.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <Error />,
     children: [
       { index: true, 
         element: <WelcomePage /> },
