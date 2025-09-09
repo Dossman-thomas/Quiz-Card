@@ -7,14 +7,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // import css
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './index.css'
+import './styles/index.css'
+import './styles/variables.css'
 
 // import pages
 import App from './App.jsx'
 import Error from './pages/Error.jsx'; 
 import LandingPage from './pages/Landing.jsx';
 import ManageCardsPage from './pages/ManageCards.jsx';
-import StudyPage from './pages/Study.jsx';
+import StudyPage from './pages/StudyMode.jsx';
 
 const router = createBrowserRouter([
   { path: '/', element: <LandingPage /> },
