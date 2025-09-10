@@ -62,7 +62,9 @@ export default function CardForm({
           <Form.Group controlId={`answer-${id}`} className="mb-3">
             <Form.Label>Answer</Form.Label>
             <Form.Control
-              type="text"
+              type="textarea"
+              as="textarea"
+              aria-label="Enter answer text area"
               placeholder="Enter answer"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
