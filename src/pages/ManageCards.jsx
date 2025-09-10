@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import CardForm from "../components/CardForm";
 
 export default function ManageCardsPage() {
+  // State to add new cards to the page
   const [cards, setCards] = useState([
     { id: Date.now(), question: "", answer: "" }, // start with an empty card
   ]);
