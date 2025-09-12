@@ -11,6 +11,8 @@ import {
 } from "../services/cardService";
 
 export default function ManageCardsPage() {
+  const navigate = useNavigate();
+
   // State to add new cards to the page
   const [cards, setCards] = useState([
     { id: Date.now(), question: "", answer: "" }, // start with an empty card
@@ -20,12 +22,16 @@ export default function ManageCardsPage() {
   useEffect(() => {
     const loadCards = async () => {
       const cards = await getCards();
-      setCards(cards);
+      // if no flashcards saved yet, start with one blank card
+      if (cards.length > 0) {
+        setCards(cards);
+      } else {
+        // start with blank card
+        setCards([{ id: Date.now(), question: "", answer: "" }]);
+      }
     };
     loadCards();
   }, []);
-
-  const navigate = useNavigate();
 
   // Add a new blank card form
   const handleAddNewCardForm = () => {
@@ -33,22 +39,25 @@ export default function ManageCardsPage() {
     setCards([...cards, newCard]);
   };
 
-// Handle saving a card
-const handleSaveCard = async (id, fields) => {
-  const existingCard = cards.find((c) => c.id === id);
+  // Handle saving a card
+  const handleSaveCard = async (id, fields) => {
+    const existingCard = cards.find((c) => c.id === id);
 
-  let savedCard;
-  if (existingCard && existingCard.question !== "" && existingCard.answer !== "") {
-    // card already exists, so update it
-    savedCard = await updateCard(id, fields);
-  } else {
-    // brand new card, so create it
-    savedCard = await createCard({ id, ...fields });
-  }
+    let savedCard;
+    if (
+      existingCard &&
+      existingCard.question !== "" &&
+      existingCard.answer !== ""
+    ) {
+      // card already exists, so update it
+      savedCard = await updateCard(id, fields);
+    } else {
+      // brand new card, so create it
+      savedCard = await createCard({ id, ...fields });
+    }
 
-  setCards((prev) => prev.map((c) => (c.id === id ? savedCard : c)));
-};
-
+    setCards((prev) => prev.map((c) => (c.id === id ? savedCard : c)));
+  };
 
   // Update a card
   const handleUpdateCard = async (id, fields) => {
@@ -60,6 +69,12 @@ const handleSaveCard = async (id, fields) => {
   const handleDeleteCard = async (id) => {
     await deleteCard(id);
     setCards((prev) => prev.filter((card) => card.id !== id));
+  };
+
+  // Toggle star status
+  const handleToggleStarCard = async (id) => {
+    const updated = await toggleStarred(id);
+    setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
   };
 
   return (
@@ -75,9 +90,11 @@ const handleSaveCard = async (id, fields) => {
           id={card.id}
           question={card.question}
           answer={card.answer}
+          isStarred={card.isStarred}
           onSave={handleSaveCard}
           onUpdate={handleUpdateCard}
           onDelete={handleDeleteCard}
+          onToggleStar={handleToggleStarCard}
         />
       ))}
 

@@ -9,7 +9,6 @@ export default function CardForm({
   question: initialQuestion = "",
   answer: initialAnswer = "",
   onSave,
-  onEdit,
   onDelete,
   isStarred = false,
   onToggleStar,
