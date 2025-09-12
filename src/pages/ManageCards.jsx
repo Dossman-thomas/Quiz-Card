@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import CardForm from "../components/CardForm";
-import { getCards, createCard, updateCard, deleteCard, toggleStarred } from "../services/cardService"
+import {
+  getCards,
+  createCard,
+  updateCard,
+  deleteCard,
+  toggleStarred,
+} from "../services/cardService";
 
 export default function ManageCardsPage() {
   // State to add new cards to the page
@@ -29,19 +35,26 @@ export default function ManageCardsPage() {
 
 // Handle saving a card
 const handleSaveCard = async (id, fields) => {
-  const savedCard = await createCard({ id, ...fields });
-  setCards((prev) =>
-    prev.map((c) => (c.id === id ? savedCard : c))
-  );
+  const existingCard = cards.find((c) => c.id === id);
+
+  let savedCard;
+  if (existingCard && existingCard.question !== "" && existingCard.answer !== "") {
+    // card already exists, so update it
+    savedCard = await updateCard(id, fields);
+  } else {
+    // brand new card, so create it
+    savedCard = await createCard({ id, ...fields });
+  }
+
+  setCards((prev) => prev.map((c) => (c.id === id ? savedCard : c)));
 };
 
 
   // Update a card
-const handleUpdateCard = async (id, fields) => {
-  const updated = await updateCard(id, fields);
-  setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
-};
-
+  const handleUpdateCard = async (id, fields) => {
+    const updated = await updateCard(id, fields);
+    setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
+  };
 
   // Delete a card
   const handleDeleteCard = async (id) => {
@@ -49,10 +62,9 @@ const handleUpdateCard = async (id, fields) => {
     setCards((prev) => prev.filter((card) => card.id !== id));
   };
 
-
   return (
     <div className="p-4 mt-5">
-      <h1 className="mb-4">Manage Cards</h1>
+      {/* <h1 className="mb-4">Manage Cards</h1> */}
       <p>
         <em>Use the forms below to edit your flashcards.</em>
       </p>
@@ -63,9 +75,9 @@ const handleUpdateCard = async (id, fields) => {
           id={card.id}
           question={card.question}
           answer={card.answer}
+          onSave={handleSaveCard}
           onUpdate={handleUpdateCard}
           onDelete={handleDeleteCard}
-          onSave={handleSaveCard}
         />
       ))}
 

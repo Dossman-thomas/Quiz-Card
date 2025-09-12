@@ -26,18 +26,10 @@ export default function CardForm({
   };
 
   return (
-    <Card className="mb-3 p-3 mx-auto">
+    <Card className="mb-4 p-2 mx-auto">
       <Card.Body>
         {/* Top-right action buttons */}
         <div className="d-flex justify-content-end mb-2">
-          <Button
-            variant="outline-secondary"
-            size="sm"
-            className="me-2"
-            onClick={() => onEdit && onEdit(id, { question, answer })}
-          >
-            Edit
-          </Button>
           <Button
             variant="outline-danger"
             size="sm"
@@ -67,7 +59,7 @@ export default function CardForm({
             />
           </Form.Group>
 
-          <Form.Group controlId={`answer-${id}`} className="mb-3">
+          <Form.Group controlId={`answer-${id}`} className="mb-4">
             <Form.Label className="text-start w-100">Answer: </Form.Label>
             <Form.Control
               type="textarea"
@@ -78,7 +70,7 @@ export default function CardForm({
               onChange={(e) => setAnswer(e.target.value)}
             />
           </Form.Group>
-          <Button type="submit" className="w-100">
+          <Button type="submit" className="w-100" onClick={handleSubmit}>
             Save
           </Button>
         </Form>
