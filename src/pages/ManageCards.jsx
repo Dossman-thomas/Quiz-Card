@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import CardForm from "../components/CardForm";
@@ -10,34 +10,45 @@ export default function ManageCardsPage() {
     { id: Date.now(), question: "", answer: "" }, // start with an empty card
   ]);
 
+  // Load existing cards from local storage
+  useEffect(() => {
+    const loadCards = async () => {
+      const cards = await getCards();
+      setCards(cards);
+    };
+    loadCards();
+  }, []);
+
   const navigate = useNavigate();
 
   // Add a new blank card form
-  const handleAddNewCard = () => {
+  const handleAddNewCardForm = () => {
     const newCard = { id: Date.now(), question: "", answer: "" };
     setCards([...cards, newCard]);
   };
 
+// Handle saving a card
+const handleSaveCard = async (id, fields) => {
+  const savedCard = await createCard({ id, ...fields });
+  setCards((prev) =>
+    prev.map((c) => (c.id === id ? savedCard : c))
+  );
+};
+
+
   // Update a card
-  const handleUpdateCard = (id, updatedCard) => {
-    setCards(
-      cards.map((card) => (card.id === id ? { ...card, ...updatedCard } : card))
-    );
-  };
+const handleUpdateCard = async (id, fields) => {
+  const updated = await updateCard(id, fields);
+  setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
+};
+
 
   // Delete a card
-  const handleDeleteCard = (id) => {
-    setCards(cards.filter((card) => card.id !== id));
+  const handleDeleteCard = async (id) => {
+    await deleteCard(id);
+    setCards((prev) => prev.filter((card) => card.id !== id));
   };
 
-  // Save to LocalStorage or DB
-  const handleSaveCard = (id) => {
-    console.log(
-      "Saving card with id:",
-      id,
-      cards.find((card) => card.id === id)
-    );
-  };
 
   return (
     <div className="p-4 mt-5">
@@ -59,7 +70,7 @@ export default function ManageCardsPage() {
       ))}
 
       <div className="d-flex gap-3 mt-4 justify-content-center">
-        <Button variant="primary" onClick={handleAddNewCard}>
+        <Button variant="primary" onClick={handleAddNewCardForm}>
           ➕ Add New Card
         </Button>
         <Button variant="success" onClick={() => navigate("/study")}>
