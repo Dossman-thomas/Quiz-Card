@@ -1,46 +1,85 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import CardForm from "../components/CardForm";
+import {
+  getCards,
+  createCard,
+  updateCard,
+  deleteCard,
+  toggleStarred,
+} from "../services/cardService";
 
 export default function ManageCardsPage() {
+  const navigate = useNavigate();
+
   // State to add new cards to the page
   const [cards, setCards] = useState([
     { id: Date.now(), question: "", answer: "" }, // start with an empty card
   ]);
 
-  const navigate = useNavigate();
+  // Load existing cards from local storage
+  useEffect(() => {
+    const loadCards = async () => {
+      const cards = await getCards();
+      // if no flashcards saved yet, start with one blank card
+      if (cards.length > 0) {
+        setCards(cards);
+      } else {
+        // start with blank card
+        setCards([{ id: Date.now(), question: "", answer: "" }]);
+      }
+    };
+    loadCards();
+  }, []);
 
   // Add a new blank card form
-  const handleAddNewCard = () => {
+  const handleAddNewCardForm = () => {
     const newCard = { id: Date.now(), question: "", answer: "" };
     setCards([...cards, newCard]);
   };
 
+  // Handle saving a card
+  const handleSaveCard = async (id, fields) => {
+    const existingCard = cards.find((c) => c.id === id);
+
+    let savedCard;
+    if (
+      existingCard &&
+      existingCard.question !== "" &&
+      existingCard.answer !== ""
+    ) {
+      // card already exists, so update it
+      savedCard = await updateCard(id, fields);
+    } else {
+      // brand new card, so create it
+      savedCard = await createCard({ id, ...fields });
+    }
+
+    setCards((prev) => prev.map((c) => (c.id === id ? savedCard : c)));
+  };
+
   // Update a card
-  const handleUpdateCard = (id, updatedCard) => {
-    setCards(
-      cards.map((card) => (card.id === id ? { ...card, ...updatedCard } : card))
-    );
+  const handleUpdateCard = async (id, fields) => {
+    const updated = await updateCard(id, fields);
+    setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
   };
 
   // Delete a card
-  const handleDeleteCard = (id) => {
-    setCards(cards.filter((card) => card.id !== id));
+  const handleDeleteCard = async (id) => {
+    await deleteCard(id);
+    setCards((prev) => prev.filter((card) => card.id !== id));
   };
 
-  // Save to LocalStorage or DB
-  const handleSaveCard = (id) => {
-    console.log(
-      "Saving card with id:",
-      id,
-      cards.find((card) => card.id === id)
-    );
+  // Toggle star status
+  const handleToggleStarCard = async (id) => {
+    const updated = await toggleStarred(id);
+    setCards((prev) => prev.map((c) => (c.id === id ? updated : c)));
   };
 
   return (
     <div className="p-4 mt-5">
-      <h1 className="mb-4">Manage Cards</h1>
+      {/* <h1 className="mb-4">Manage Cards</h1> */}
       <p>
         <em>Use the forms below to edit your flashcards.</em>
       </p>
@@ -51,14 +90,16 @@ export default function ManageCardsPage() {
           id={card.id}
           question={card.question}
           answer={card.answer}
+          isStarred={card.isStarred}
+          onSave={handleSaveCard}
           onUpdate={handleUpdateCard}
           onDelete={handleDeleteCard}
-          onSave={handleSaveCard}
+          onToggleStar={handleToggleStarCard}
         />
       ))}
 
       <div className="d-flex gap-3 mt-4 justify-content-center">
-        <Button variant="primary" onClick={handleAddNewCard}>
+        <Button variant="primary" onClick={handleAddNewCardForm}>
           ➕ Add New Card
         </Button>
         <Button variant="success" onClick={() => navigate("/study")}>

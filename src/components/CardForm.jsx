@@ -8,7 +8,7 @@ export default function CardForm({
   id,
   question: initialQuestion = "",
   answer: initialAnswer = "",
-  onEdit,
+  onSave,
   onDelete,
   isStarred = false,
   onToggleStar,
@@ -17,19 +17,18 @@ export default function CardForm({
   const [question, setQuestion] = useState(initialQuestion);
   const [answer, setAnswer] = useState(initialAnswer);
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevent page reload
+    if (onSave) {
+      onSave(id, { question, answer });
+    }
+  };
+
   return (
-    <Card className="mb-3">
+    <Card className="mb-4 p-2 mx-auto">
       <Card.Body>
         {/* Top-right action buttons */}
         <div className="d-flex justify-content-end mb-2">
-          <Button
-            variant="outline-secondary"
-            size="sm"
-            className="me-2"
-            onClick={() => onEdit && onEdit(id, { question, answer })}
-          >
-            Edit
-          </Button>
           <Button
             variant="outline-danger"
             size="sm"
@@ -50,7 +49,7 @@ export default function CardForm({
         {/* Card inputs */}
         <Form>
           <Form.Group controlId={`question-${id}`} className="mb-3">
-            <Form.Label>Question</Form.Label>
+            <Form.Label className="text-start w-100">Question: </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter question"
@@ -59,8 +58,8 @@ export default function CardForm({
             />
           </Form.Group>
 
-          <Form.Group controlId={`answer-${id}`} className="mb-3">
-            <Form.Label>Answer</Form.Label>
+          <Form.Group controlId={`answer-${id}`} className="mb-4">
+            <Form.Label className="text-start w-100">Answer: </Form.Label>
             <Form.Control
               type="textarea"
               as="textarea"
@@ -70,6 +69,9 @@ export default function CardForm({
               onChange={(e) => setAnswer(e.target.value)}
             />
           </Form.Group>
+          <Button type="submit" className="w-100" onClick={handleSubmit}>
+            Save
+          </Button>
         </Form>
       </Card.Body>
     </Card>
