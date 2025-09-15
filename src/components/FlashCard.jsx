@@ -16,7 +16,7 @@ export default function FlashCard({ question, answer }) {
         /* BACK SIDE */
         <div className="flashcard-back">
           <div className="notebook-lines">
-            <p>{answer}</p>
+            <p className="p-3 m-0">{answer}</p>
           </div>
         </div>
       )}
