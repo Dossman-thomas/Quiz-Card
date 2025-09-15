@@ -16,14 +16,7 @@ export default function FlashCard({ question, answer }) {
         /* BACK SIDE */
         <div className="flashcard-back">
           <div className="notebook-lines">
-            {answer.split("\n").map((line, idx) => (
-              <p
-                key={idx}
-                className={`answer-line ${idx === 0 ? "first-line" : ""}`}
-              >
-                {line}
-              </p>
-            ))}
+            <p>{answer}</p>
           </div>
         </div>
       )}
