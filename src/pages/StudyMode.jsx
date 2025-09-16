@@ -4,9 +4,11 @@ import { getCards } from "../services/cardService";
 import { useEffect, useState } from "react";
 
 export default function StudyPage() {
+  // State management
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Fetch flashcards to display
   useEffect(() => {
     const fetchCards = async () => {
       const storedCards = await getCards();
@@ -15,28 +17,30 @@ export default function StudyPage() {
     fetchCards();
   }, []);
 
+  // Event handlers
   const handleNext = () => {
-    if (cards.length > 0) {
-      setCurrentIndex((prev) => (prev + 1) % cards.length);
+    if (cards.length > 0) { // ensures we don't divide by 0 and break things
+      setCurrentIndex((prev) => (prev + 1) % cards.length); // prev = previous state, and % cards.length wraps around when we reach the end thus creating an endless loop of cards
     }
   };
 
   const handlePrevious = () => {
-    if (cards.length > 0) {
-      setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
+    if (cards.length > 0) { // ensures we don't divide by 0 and break things
+      setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length); // prev = previous state, and % cards.length wraps around when we reach the end thus creating an endless loop of cards
     }
   };
 
   const handleShuffle = () => {
-    if (cards.length > 1) {
-      // Fisher-Yates shuffle for fairness
-      const shuffled = [...cards];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    // Shuffle the cards, guaranteeing every permutation is equally likely
+    if (cards.length > 1) { // no need to shuffle if 0 or 1 card
+      // Fisher-Yates shuffle algorithm
+      const shuffled = [...cards]; // create shallow copy of array so we don't mutate the state directly
+      for (let i = shuffled.length - 1; i > 0; i--) { // start from end of the array
+        const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // swap elements at i and j
       }
-      setCards(shuffled);
-      setCurrentIndex(0); // restart at first card
+      setCards(shuffled); // update cards state in new random order
+      setCurrentIndex(0); // restart at first card in new order
     }
   };
 
