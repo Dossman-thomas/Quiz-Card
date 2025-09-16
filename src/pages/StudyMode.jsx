@@ -15,7 +15,7 @@ export default function StudyPage() {
     fetchCards();
   }, []);
 
-   const handleNext = () => {
+  const handleNext = () => {
     if (cards.length > 0) {
       setCurrentIndex((prev) => (prev + 1) % cards.length);
     }
@@ -23,12 +23,24 @@ export default function StudyPage() {
 
   const handlePrevious = () => {
     if (cards.length > 0) {
-      setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length); 
+      setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
     }
   };
 
+  const handleShuffle = () => {
+    if (cards.length > 1) {
+      // Fisher-Yates shuffle for fairness
+      const shuffled = [...cards];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      setCards(shuffled);
+      setCurrentIndex(0); // restart at first card
+    }
+  };
 
-return (
+  return (
     <div className="container-fluid centered flex-column gap-4">
       {cards.length > 0 ? (
         <>
@@ -38,9 +50,15 @@ return (
             question={cards[currentIndex].question}
             answer={cards[currentIndex].answer}
           />
-          <div className="d-flex justify-content-center gap-4" style={{ width: "400px" }}>
+          <div
+            className="d-flex justify-content-center gap-4"
+            style={{ width: "400px" }}
+          >
             <Button variant="outline-primary" onClick={handlePrevious}>
               ⬅️
+            </Button>
+            <Button variant="outline-secondary" onClick={handleShuffle}>
+              🔀
             </Button>
             <Button variant="outline-primary" onClick={handleNext}>
               ➡️
