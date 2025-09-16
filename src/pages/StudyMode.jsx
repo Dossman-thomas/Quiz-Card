@@ -29,9 +29,10 @@ export default function StudyPage() {
 
 
 return (
-    <div className="container-fluid centered flex-column gap-3">
+    <div className="container-fluid centered flex-column gap-4">
       {cards.length > 0 ? (
         <>
+          <h3 className="m-0">Click to flip your cards!</h3>
           <FlashCard
             key={cards[currentIndex].id}
             question={cards[currentIndex].question}
