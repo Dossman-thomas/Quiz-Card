@@ -2,10 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import "../styles/header.css";
 
 export default function Header() {
   return (
-    <Navbar collapseOnSelect expand="lg" fixed="top" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" fixed="top" className="main-header">
       <Container>
         <Navbar.Brand href="/">Quiz Card</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
