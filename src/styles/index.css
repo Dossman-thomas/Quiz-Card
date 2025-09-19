@@ -22,6 +22,8 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   text-rendering: optimizeLegibility;
+
+  background-color: var(--bg-color);
 }
 
 /* 2. Typography Defaults */
@@ -37,15 +39,42 @@ h4 { font-size: 1.25rem; }
 h5 { font-size: 1.125rem; }
 h6 { font-size: 1rem; }
 
+h1 {
+  color: var(--shade-primary);
+}
+
 p {
   margin-bottom: 1rem;
   color: inherit;
 }
 
+.secondary-text {
+  color: var(--shade-secondary);
+}
+
+/* Utility CSS */
+
 .centered {
   display: flex;
-  align-items: center;   /* vertical center */
-  justify-content: center; /* horizontal center */
-  min-height: 100vh;     /* fill full screen height */
-  text-align: center;    /* optional: center text inside */
+  align-items: center;  
+  justify-content: center;
+  min-height: 100vh;  
+  text-align: center;  
+}
+
+/* Button Styles */
+
+.primary-button {
+  background-color: var(--pop);
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.primary-button:hover {
+  background-color: #ff7424;
 }
