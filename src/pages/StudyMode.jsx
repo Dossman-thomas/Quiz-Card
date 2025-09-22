@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import FlashCard from "../components/FlashCard";
-import { getCards } from "../services/cardService";
+import { getCards, toggleStarred } from "../services/cardService";
 import { useEffect, useState } from "react";
 
 export default function StudyPage() {
@@ -56,6 +56,12 @@ export default function StudyPage() {
     }
   };
 
+  const handleToggleStar = async (id) => {
+    await toggleStarred(id);
+    const updatedCards = await getCards();
+    setCards(updatedCards);
+  };
+
   return (
     <div className="container-fluid centered flex-column gap-4">
       {filteredCards.length > 0 ? (
@@ -63,8 +69,11 @@ export default function StudyPage() {
           <h3 className="m-0">Click to flip your cards!</h3>
           <FlashCard
             key={filteredCards[currentIndex].id}
+            id={filteredCards[currentIndex].id}
             question={filteredCards[currentIndex].question}
             answer={filteredCards[currentIndex].answer}
+            isStarred={filteredCards[currentIndex].isStarred}
+            onToggleStar={handleToggleStar}
           />
 
           <div
@@ -81,9 +90,7 @@ export default function StudyPage() {
               ➡️
             </Button>
           </div>
-
-          {/* ⭐ Starred toggle button */}
-          <div className="mt-3">
+          <div className="mt-1">
             <Button
               variant={studyStarred ? "warning" : "outline-warning"}
               onClick={() => {

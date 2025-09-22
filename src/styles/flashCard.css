@@ -2,6 +2,7 @@
   width: 400px;
   height: 250px;
   cursor: pointer;
+  position: relative;
 
   /* Flashcard flip perspective container */
   perspective: 1000px;
@@ -36,6 +37,14 @@
       rgba(112, 185, 233, 0.541) 25px);
   background-size: 100% 2px, 100% 25px;
   background-position: 0 24px, 0 0;
+}
+
+/* Flashcard star button */
+.star-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
 }
 
 /* Flashcard flip animation */
