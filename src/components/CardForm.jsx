@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import "../styles/cardForm.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function CardForm({
   // card form props
@@ -31,19 +33,19 @@ export default function CardForm({
         {/* Top-right action buttons */}
         <div className="d-flex justify-content-end mb-2">
           <Button
-            variant="outline-danger"
-            size="sm"
-            className="me-2"
+            size="md"
+            className="me-2 card-btn"
             onClick={() => onDelete && onDelete(id)}
           >
-            Delete
+            <FontAwesomeIcon icon={faTrashCan} />
           </Button>
           <Button
-            variant={isStarred ? "warning" : "outline-warning"}
             size="sm"
+            className="card-btn"
+            id={isStarred ? "" : "starred-btn"}
             onClick={() => onToggleStar && onToggleStar(id)}
           >
-            ★
+            <FontAwesomeIcon icon={faStar} />
           </Button>
         </div>
 
