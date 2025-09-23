@@ -2,6 +2,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import "../styles/cardForm.css";
 
 export default function CardForm({
   // card form props
@@ -25,7 +26,7 @@ export default function CardForm({
   };
 
   return (
-    <Card className="mb-4 p-2 mx-auto">
+    <Card className="mb-4 p-2 mx-auto" id="card-form">
       <Card.Body>
         {/* Top-right action buttons */}
         <div className="d-flex justify-content-end mb-2">
@@ -65,11 +66,12 @@ export default function CardForm({
               as="textarea"
               aria-label="Enter answer text area"
               placeholder="Enter answer"
+              className="answer-input"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
             />
           </Form.Group>
-          <Button type="submit" className="w-100" onClick={handleSubmit}>
+          <Button type="submit" className="w-100" id="save-btn" onClick={handleSubmit}>
             Save
           </Button>
         </Form>

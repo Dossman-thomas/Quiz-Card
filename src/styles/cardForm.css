@@ -1,0 +1,17 @@
+.answer-input {
+    height: 110px;
+}
+
+#card-form {
+    width: clamp(400px, 63%, 800px);
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.123);
+}
+
+#save-btn {
+    background-color: var(--primary);
+    color: white;
+    font-size: clamp(1rem, 1.2vw, 1.5rem);
+    border: none;
+    padding: .7rem 1rem;
+}

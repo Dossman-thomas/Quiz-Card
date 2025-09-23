@@ -81,7 +81,7 @@ export default function ManageCardsPage() {
     <div className="p-4 mt-5">
       {/* <h1 className="mb-4">Manage Cards</h1> */}
       <p>
-        <em>Use the forms below to edit your flashcards.</em>
+        <em>Use the forms below to edit your flashcards!</em>
       </p>
 
       {cards.map((card) => (
