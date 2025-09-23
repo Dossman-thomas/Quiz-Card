@@ -30,9 +30,11 @@ export default function FlashCard({
     >
       <div className="flashcard-inner">
         {/* Star button overlay */}
-        <div className="star-button">
+        <div className="star-btn">
           <Button
-            variant={isStarred ? "warning" : "outline-warning"}
+            // variant={isStarred ? "warning" : "outline-warning"}
+            className="card-btn"
+            id={isStarred ? "" : "starred-btn"}
             size="sm"
             onClick={handleStarClick}
           >

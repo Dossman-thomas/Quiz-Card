@@ -2,27 +2,8 @@
     height: 110px;
 }
 
-.card-btn {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: var(--secondary-container);
-    color: black;
-    border: none;
-
-    /* center icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#starred-btn {
-    background-color: transparent;
-    border: 2px solid var(--secondary-container);
-}
-
 #card-form {
-    width: clamp(400px, 63%, 80%);
+    width: clamp(373px, 65%, 80%);
     font-size: clamp(1rem, 1.2vw, 2rem);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.123);
 }

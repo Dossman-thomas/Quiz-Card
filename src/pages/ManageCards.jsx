@@ -98,12 +98,12 @@ export default function ManageCardsPage() {
         />
       ))}
 
-      <div className="d-flex gap-3 mt-4 justify-content-center">
-        <Button variant="primary" onClick={handleAddNewCardForm}>
-          ➕ Add New Card
+      <div className="d-flex justify-content-center gap-3 mt-4">
+        <Button className="action-btn btn" onClick={handleAddNewCardForm}>
+          Add New Card
         </Button>
-        <Button variant="success" onClick={() => navigate("/study")}>
-          📖 Want to Study?
+        <Button className="primary-btn btn" onClick={() => navigate("/study")}>
+          Want to Study?
         </Button>
       </div>
     </div>

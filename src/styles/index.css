@@ -63,10 +63,7 @@ p {
 }
 
 /* Button Styles */
-
-.primary-button {
-  background-color: var(--pop);
-  color: #fff;
+.btn {
   border: none;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
@@ -75,6 +72,52 @@ p {
   transition: background-color 0.5s ease;
 }
 
-.primary-button:hover {
+.primary-btn {
+  background-color: var(--pop);
+  color: #fff;
+}
+
+.primary-btn:hover {
   background-color: #ff7424;
+}
+
+.action-btn {
+  background-color: var(--secondary);
+}
+
+.card-btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-container);
+    color: black;
+    border: none;
+
+    /* center icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-btn:hover {
+    background-color: var(--shade-secondary);
+}
+
+/* Flashcard star button */
+.star-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+#starred-btn {
+    background-color: transparent;
+    border: 2px solid var(--secondary-container);
+}
+
+#starred-btn:hover {
+  background-color: var(--shade-secondary);
+  color: black;
+  border: 2px solid var(--shade-secondary);
 }

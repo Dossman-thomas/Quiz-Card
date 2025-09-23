@@ -39,14 +39,6 @@
   background-position: 0 24px, 0 0;
 }
 
-/* Flashcard star button */
-.star-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
-}
-
 /* Flashcard flip animation */
 .flashcard-inner {
   position: relative;

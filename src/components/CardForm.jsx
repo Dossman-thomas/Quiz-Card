@@ -55,7 +55,7 @@ export default function CardForm({
             <Form.Label className="text-start w-100">Question: </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter question"
+              placeholder="Enter Question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
             />
@@ -67,7 +67,7 @@ export default function CardForm({
               type="textarea"
               as="textarea"
               aria-label="Enter answer text area"
-              placeholder="Enter answer"
+              placeholder="Enter Answer"
               className="answer-input"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
