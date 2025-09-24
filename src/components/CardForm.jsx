@@ -42,7 +42,7 @@ export default function CardForm({
           <Button
             size="sm"
             className="card-btn"
-            id={isStarred ? "" : "starred-btn"}
+            id={isStarred ? "starred-btn" : ""}
             onClick={() => onToggleStar && onToggleStar(id)}
           >
             <FontAwesomeIcon icon={faStar} />

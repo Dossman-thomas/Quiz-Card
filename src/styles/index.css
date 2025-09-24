@@ -10,7 +10,7 @@
 }
 
 html {
-  font-size: 100%; 
+  font-size: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -27,17 +27,39 @@ body {
 }
 
 /* 2. Typography Defaults */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.25;
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
 
 h1 {
   color: var(--shade-primary);
@@ -56,10 +78,10 @@ p {
 
 .centered {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
-  min-height: 100vh;  
-  text-align: center;  
+  min-height: 100vh;
+  text-align: center;
 }
 
 /* Button Styles */
@@ -78,46 +100,44 @@ p {
 }
 
 .primary-btn:hover {
-  background-color: #ff7424;
+  background-color: var(--shade-pop);
 }
 
 .action-btn {
   background-color: var(--secondary);
 }
 
-.card-btn {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: var(--secondary-container);
-    color: black;
-    border: none;
+.action-btn:hover {
+  background-color: var(--shade-secondary);
+}
 
-    /* center icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.card-btn {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid var(--pop);
+  color: black;
+
+  /* center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-btn:hover {
-    background-color: var(--shade-secondary);
+  background-color: var(--shade-pop);
+  /* color: black; */
+  border: none;
 }
 
-/* Flashcard star button */
-.star-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
-}
+
 
 #starred-btn {
-    background-color: transparent;
-    border: 2px solid var(--secondary-container);
+  background-color: var(--pop);
 }
 
 #starred-btn:hover {
-  background-color: var(--shade-secondary);
-  color: black;
-  border: 2px solid var(--shade-secondary);
+  background-color: var(--shade-pop);
+  /* color: black; */
 }
