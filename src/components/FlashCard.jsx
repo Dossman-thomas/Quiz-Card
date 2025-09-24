@@ -2,6 +2,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import "../styles/flashCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { color } from "framer-motion";
 
 export default function FlashCard({
   id,
@@ -32,13 +35,12 @@ export default function FlashCard({
         {/* Star button overlay */}
         <div className="star-btn">
           <Button
-            // variant={isStarred ? "warning" : "outline-warning"}
             className="card-btn"
-            id={isStarred ? "" : "starred-btn"}
+            id={isStarred ? "starred-btn" : ""}
             size="sm"
             onClick={handleStarClick}
           >
-            ★
+            <FontAwesomeIcon icon={faStar}  />
           </Button>
         </div>
         {/* Front of card */}

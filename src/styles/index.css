@@ -115,7 +115,7 @@ p {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: transparent;
+  background-color: white;
   border: 2px solid var(--pop);
   color: black;
 
@@ -127,11 +127,15 @@ p {
 
 .card-btn:hover {
   background-color: var(--shade-pop);
-  /* color: black; */
   border: none;
 }
 
-
+.star-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
 
 #starred-btn {
   background-color: var(--pop);
@@ -139,5 +143,4 @@ p {
 
 #starred-btn:hover {
   background-color: var(--shade-pop);
-  /* color: black; */
 }
