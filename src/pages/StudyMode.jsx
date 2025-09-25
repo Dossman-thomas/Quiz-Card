@@ -2,8 +2,14 @@ import Button from "react-bootstrap/Button";
 import FlashCard from "../components/FlashCard";
 import { getCards, toggleStarred } from "../services/cardService";
 import { useEffect, useState } from "react";
+import "../styles/studyMode.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackwardStep, faForwardStep, faShuffle, faStar as faSolidStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBackwardStep,
+  faForwardStep,
+  faShuffle,
+  faStar as faSolidStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { faStar as faRegularStar } from "@fortawesome/free-regular-svg-icons";
 
 export default function StudyPage() {
@@ -83,24 +89,33 @@ export default function StudyPage() {
             className="d-flex justify-content-center gap-4"
             style={{ width: "400px" }}
           >
-            <Button onClick={handlePrevious}>
+            <Button onClick={handlePrevious} className="study-btns study-nav">
               <FontAwesomeIcon icon={faBackwardStep} size="lg" />
             </Button>
-            <Button onClick={handleShuffle}>
+            <Button
+              onClick={handleShuffle}
+              className="study-btns"
+              id="shuffle-btn"
+            >
               <FontAwesomeIcon icon={faShuffle} size="lg" />
             </Button>
-            <Button onClick={handleNext}>
+            <Button onClick={handleNext} className="study-btns study-nav">
               <FontAwesomeIcon icon={faForwardStep} size="lg" />
             </Button>
           </div>
           <div className="mt-1">
             <Button
+              className="study-btns"
               onClick={() => {
                 setStudyStarred((prev) => !prev);
                 setCurrentIndex(0); // reset index when toggling
               }}
             >
-              <FontAwesomeIcon icon={studyStarred ? faSolidStar : faRegularStar} size="lg" />
+              <FontAwesomeIcon
+                icon={studyStarred ? faSolidStar : faRegularStar}
+                size="lg"
+                style={{ color: "var(--pop)" }}
+              />
             </Button>
           </div>
         </>
