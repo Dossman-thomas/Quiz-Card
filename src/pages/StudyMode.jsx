@@ -90,17 +90,17 @@ export default function StudyPage() {
             style={{ width: "400px" }}
           >
             <Button onClick={handlePrevious} className="study-btns study-nav">
-              <FontAwesomeIcon icon={faBackwardStep} size="lg" />
+              <FontAwesomeIcon icon={faBackwardStep} size="lg" className="icons" />
             </Button>
             <Button
               onClick={handleShuffle}
               className="study-btns"
               id="shuffle-btn"
             >
-              <FontAwesomeIcon icon={faShuffle} size="lg" />
+              <FontAwesomeIcon icon={faShuffle} size="lg" className="icons" />
             </Button>
             <Button onClick={handleNext} className="study-btns study-nav">
-              <FontAwesomeIcon icon={faForwardStep} size="lg" />
+              <FontAwesomeIcon icon={faForwardStep} size="lg" className="icons" />
             </Button>
           </div>
           <div className="mt-1">
@@ -115,6 +115,7 @@ export default function StudyPage() {
                 icon={studyStarred ? faSolidStar : faRegularStar}
                 size="lg"
                 style={{ color: "var(--pop)" }}
+                className="icons"
               />
             </Button>
           </div>
