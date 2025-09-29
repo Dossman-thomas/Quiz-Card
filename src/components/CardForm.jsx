@@ -1,6 +1,8 @@
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Toast from "react-bootstrap/Toast";
+import ToastContainer from "react-bootstrap/ToastContainer";
 import { useState } from "react";
 import "../styles/cardForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,11 +21,13 @@ export default function CardForm({
   //   state management
   const [question, setQuestion] = useState(initialQuestion);
   const [answer, setAnswer] = useState(initialAnswer);
+  const [showToast, setShowToast] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     if (onSave) {
       onSave(id, { question, answer });
+      setShowToast(true); // Show success toast on save
     }
   };
 
@@ -76,6 +80,21 @@ export default function CardForm({
           <Button type="submit" className="w-100" id="save-btn" onClick={handleSubmit}>
             Save
           </Button>
+
+          {/* Success Toast */}
+          <ToastContainer position="middle-center" className="p-3">
+            <Toast
+              bg="light"
+              style={{ color: "var(--friendly-success)" }}
+              onClose={() => setShowToast(false)}
+              show={showToast}
+              delay={1500}
+              autohide
+            >
+              <Toast.Body>Card saved successfully!</Toast.Body>
+            </Toast>
+          </ToastContainer>
+
         </Form>
       </Card.Body>
     </Card>
