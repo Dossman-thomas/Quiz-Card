@@ -90,7 +90,7 @@ export default function StudyPage() {
             style={{ width: "400px" }}
           >
             <Button onClick={handlePrevious} className="study-btns study-nav">
-              <FontAwesomeIcon icon={faBackwardStep} size="lg" className="icons" />
+              <FontAwesomeIcon icon={faBackwardStep} size="lg" className="icons btns" />
             </Button>
             <Button
               onClick={handleShuffle}
