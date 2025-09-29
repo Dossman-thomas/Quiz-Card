@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" fixed="top" className="main-header">
       <Container>
-        <Navbar.Brand href="/">Quiz Card</Navbar.Brand>
+        <Navbar.Brand href="/">QuizCard</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
