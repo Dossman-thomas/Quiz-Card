@@ -59,7 +59,6 @@ export default function CardForm({
         <Modal
           centered 
           show={showDeleteModal}
-          fullscreen={"lg-down"}
           onHide={() => setShowDeleteModal(false)}
         >
           <Modal.Header closeButton>
