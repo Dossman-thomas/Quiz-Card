@@ -69,37 +69,31 @@ Visit the [Deployed Site](#)
 
 ## Demo
 
-![Demo](./assets/demo.gif)  
-*Flip and shuffle cards in Study Mode.*
+**Manage Cards**: 
+*create, update, delete, and "favorite" cards in the Manage Cards page.*
+
+![ManageCards_Demo](./src/assets/gifs/QuizCard_ManageCards.gif)  
+
+**Study Mode**:
+*Flip, navigate through, shuffle, and focus on cards in Study Mode.*
+
+![StudyMode_Demo](./src/assets/gifs/QuizCard_StudyMode.gif)  
 
 ---
 
 ## Screenshots
 
 ### Landing Page
-![Landing Page]
+![Landing Page](./src/assets/screenshots/QuizCard_landing.png)
 
-### Manage Cards
-![Manage Cards](./assets/screenshots/manage-cards.png)
-
-### Study Mode
-![Study Mode](./assets/screenshots/study-mode.png)
-
-### Focused Study (Starred Cards)
-![Starred Cards](./assets/screenshots/starred-cards.png)
+### Error Page
+![Error Page](./src/assets/screenshots/QuizCard_landing.png)
 
 ---
 
 ## Figma Design
 
-### Landing Page
-![Landing Page]
-
-### Manage Cards
-![Manage Cards](./assets/screenshots/manage-cards.png)
-
-### Study Mode
-![Study Mode](./assets/screenshots/study-mode.png)
+![Figma Design](./src/assets/screenshots/QuizCard_figma.png)
 
 ---
 
