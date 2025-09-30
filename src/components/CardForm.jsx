@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
+import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import "../styles/cardForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,9 +23,10 @@ export default function CardForm({
   const [question, setQuestion] = useState(initialQuestion);
   const [answer, setAnswer] = useState(initialAnswer);
   const [showToast, setShowToast] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
+  const handleSubmit = (event) => {
+    event.preventDefault(); // prevent page reload
     if (onSave) {
       onSave(id, { question, answer });
       setShowToast(true); // Show success toast on save
@@ -39,7 +41,7 @@ export default function CardForm({
           <Button
             size="md"
             className="me-2 card-btn"
-            onClick={() => onDelete && onDelete(id)}
+            onClick={() => setShowDeleteModal(true)} // Open delete confirmation modal
           >
             <FontAwesomeIcon icon={faTrashCan} />
           </Button>
@@ -52,6 +54,35 @@ export default function CardForm({
             <FontAwesomeIcon icon={faStar} />
           </Button>
         </div>
+
+        {/* Delete Confirm Modal */}
+        <Modal
+          centered 
+          show={showDeleteModal}
+          fullscreen={"lg-down"}
+          onHide={() => setShowDeleteModal(false)}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm Deletion</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              This action cannot be undone! Are you sure you want to delete this
+              card?
+            </p>
+            <div className="d-flex justify-content-end gap-2">
+              <Button className="primary-btn" onClick={() => onDelete && onDelete(id)}>
+                Delete
+              </Button>
+              <Button
+                className="action-btn"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
 
         {/* Card inputs */}
         <Form>
@@ -77,7 +108,12 @@ export default function CardForm({
               onChange={(e) => setAnswer(e.target.value)}
             />
           </Form.Group>
-          <Button type="submit" className="w-100" id="save-btn" onClick={handleSubmit}>
+          <Button
+            type="submit"
+            className="w-100"
+            id="save-btn"
+            onClick={handleSubmit}
+          >
             Save
           </Button>
 
@@ -94,7 +130,6 @@ export default function CardForm({
               <Toast.Body>Card saved successfully!</Toast.Body>
             </Toast>
           </ToastContainer>
-
         </Form>
       </Card.Body>
     </Card>
