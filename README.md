@@ -86,6 +86,12 @@ Visit the [Deployed Site](#)
 ### Landing Page
 ![Landing Page](./src/assets/screenshots/QuizCard_landing.png)
 
+### Manage Cards Page
+![Manage Cards Page](./src/assets/screenshots/QuizCard_manage_cards.png)
+
+### Study Mode Page
+![Study Mode Page](./src/assets/screenshots/QuizCard_study_mode.png)
+
 ### Error Page
 ![Error Page](./src/assets/screenshots/QuizCard_error.png)
 
