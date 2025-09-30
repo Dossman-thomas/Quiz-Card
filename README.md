@@ -2,6 +2,8 @@
 
 **QuizCard** is a web application designed to help users create, manage, and study digital flashcards for efficient learning. Users can focus on key concepts by marking cards as “starred” and enjoy an interactive study experience with a clean, responsive interface.
 
+visit QuizCard here: [Deployed QuizCard App](https://quiz-card.netlify.app/)
+
 ## Table of Contents
 
 - [Features](#features)
