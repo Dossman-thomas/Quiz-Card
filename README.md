@@ -87,7 +87,7 @@ Visit the [Deployed Site](#)
 ![Landing Page](./src/assets/screenshots/QuizCard_landing.png)
 
 ### Error Page
-![Error Page](./src/assets/screenshots/QuizCard_landing.png)
+![Error Page](./src/assets/screenshots/QuizCard_error.png)
 
 ---
 
