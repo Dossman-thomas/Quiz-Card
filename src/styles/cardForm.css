@@ -4,7 +4,7 @@
 }
 
 #card-form {
-    width: clamp(373px, 65%, 80%);
+    width: clamp(255px, 95%, 950px);
     font-size: clamp(1rem, 1.2vw, 2rem);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.123);
 }
