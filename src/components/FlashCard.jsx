@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import "../styles/flashCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { color } from "framer-motion";
 
 export default function FlashCard({
   id,
@@ -49,7 +48,7 @@ export default function FlashCard({
         {/* Back of card */}
         <div className="flashcard-back">
           <div className="notebook-lines">
-            <p className="p-3 m-0">{answer}</p>
+            <p className="p-4 mt-4">{answer}</p>
           </div>
         </div>
       </div>

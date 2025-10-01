@@ -34,7 +34,7 @@ export default function CardForm({
   };
 
   return (
-    <Card className="mb-4 p-2 mx-auto" id="card-form">
+    <Card className="mb-4 p-1 mx-auto" id="card-form">
       <Card.Body>
         {/* Top-right action buttons */}
         <div className="d-flex justify-content-end mb-2">
@@ -57,7 +57,7 @@ export default function CardForm({
 
         {/* Delete Confirm Modal */}
         <Modal
-          centered 
+          centered
           show={showDeleteModal}
           onHide={() => setShowDeleteModal(false)}
         >
@@ -70,7 +70,10 @@ export default function CardForm({
               card?
             </p>
             <div className="d-flex justify-content-end gap-2">
-              <Button className="primary-btn" onClick={() => onDelete && onDelete(id)}>
+              <Button
+                className="primary-btn"
+                onClick={() => onDelete && onDelete(id)}
+              >
                 Delete
               </Button>
               <Button
@@ -96,15 +99,22 @@ export default function CardForm({
           </Form.Group>
 
           <Form.Group controlId={`answer-${id}`} className="mb-4">
-            <Form.Label className="text-start w-100">Answer: </Form.Label>
+            <div className="d-flex justify-content-between align-items-center">
+              <Form.Label className="text-start w-100">Answer: </Form.Label>
+              <small className="text-muted">
+                {answer.length}/250
+              </small>
+            </div>
+
             <Form.Control
               type="textarea"
               as="textarea"
               aria-label="Enter answer text area"
-              placeholder="Enter Answer"
+              placeholder="Enter Answer (250 character max)"
               className="answer-input"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
+              maxLength={250}
             />
           </Form.Group>
           <Button

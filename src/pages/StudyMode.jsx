@@ -72,10 +72,10 @@ export default function StudyPage() {
   };
 
   return (
-    <div className="container-fluid centered flex-column gap-4">
+    <div className="centered flex-column gap-4">
       {filteredCards.length > 0 ? (
         <>
-          <h3 className="m-0">Click to flip your cards!</h3>
+          <h4 className="m-0">Click to flip your cards!</h4>
           <FlashCard
             key={filteredCards[currentIndex].id}
             id={filteredCards[currentIndex].id}
@@ -87,7 +87,7 @@ export default function StudyPage() {
 
           <div
             className="d-flex justify-content-center gap-4"
-            style={{ width: "400px" }}
+            style={{ width: "clamp(290px, 60%, 450px)" }}
           >
             <Button onClick={handlePrevious} className="study-btns study-nav">
               <FontAwesomeIcon icon={faBackwardStep} size="lg" className="icons btns" />
