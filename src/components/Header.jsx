@@ -14,8 +14,8 @@ export default function Header() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/manage-cards">Manage Cards</Nav.Link>
-            <Nav.Link as={NavLink} to="/study">Study Mode</Nav.Link>
+            <Nav.Link as={NavLink} to="/manage-cards" eventKey="1">Manage Cards</Nav.Link>
+            <Nav.Link as={NavLink} to="/study" eventKey="2">Study Mode</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
